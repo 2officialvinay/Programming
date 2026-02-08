@@ -1,0 +1,11 @@
+#include<iostream>
+using namespace std;
+
+int main(){
+    
+    cout << (18>>1) << endl;
+    cout << (18>>2) << endl;
+    cout << (19<<1) <<endl;
+    cout << (21<<2) << endl;
+    
+}
