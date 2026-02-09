@@ -18,8 +18,6 @@ void removeOccurrences(string &s, string &part){
     }
 }
 
-
-
 int main(){
     string s = "daabcbaabcbc";
     string part = "abc";
