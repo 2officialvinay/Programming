@@ -1,0 +1,79 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void merge(int arr[], int s, int e){
+    int mid = (s+e)/2;
+    int len1 = mid-s+1;
+    int len2 = e-mid;
+
+    int* left = new int[len1];
+    int* right = new int[len2];
+
+    // Copying value...
+    int k = s;
+    for(int i = 0; i < len1; i++){
+        left[i] = arr[k++];
+    }
+
+    k = mid+1;
+    for(int i = 0; i < len2; i++){
+        right[i] = arr[k++];
+    }
+
+    // Merge Logic...
+    int leftIndex = 0;
+    int rightIndex = 0;
+    int mainArrayIndex = s;
+
+    while(leftIndex < len1 && rightIndex < len2){
+        if(left[leftIndex] < right[rightIndex]){
+            arr[mainArrayIndex++] = left[leftIndex++];
+        }
+        else{
+            arr[mainArrayIndex++] = right[rightIndex++];
+        }
+    }
+
+    // Remaining left array copying...
+    while(leftIndex < len1){
+        arr[mainArrayIndex++] = left[leftIndex++];
+    }
+
+    // Remaining right array copying...
+    while(rightIndex < len2){
+        arr[mainArrayIndex++] = right[rightIndex++];
+    }
+}
+
+void mergeSort(int arr[], int s, int e){
+    // Base Case...
+    // if s == e, then array is only of one element.
+    // if s > e, then invalid case.
+    if(s >= e) return;
+
+    int mid = (s+e)/2;
+    // Left array sorting...
+    mergeSort(arr, s, mid);
+
+    // Right array sorting...
+    mergeSort(arr, mid+1, e);
+
+    // Now merge left and right array...
+    merge(arr, s, e);
+}
+
+int main(){
+    int arr[] = {12,5,6,10,56,45,23};
+    int n = 7;
+    
+    int s = 0;
+    int e = n-1;
+    mergeSort(arr, s, e);
+
+    for(int i = 0; i < n; i++){
+        cout << arr[i] << "  ";
+    }
+    cout << endl;
+
+    return 0;
+}
