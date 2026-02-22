@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void printPermutation(string str, int i){
+void printPermutation(string &str, int i){
     // Base Case...
     if(i >= str.length()){
         cout << str << "  ";
