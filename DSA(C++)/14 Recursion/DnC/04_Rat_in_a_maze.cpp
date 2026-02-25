@@ -52,9 +52,15 @@ void solveMaze(int arr[3][3], int row, int col, int i, int j, vector<vector<bool
 }
 
 int main(){
-    int maze[3][3] = {{1,0,0},
+    int maze[3][3] = {{0,0,0},
                       {1,1,0},
                       {1,1,1}};
+
+    if(maze[0][0] == 0){
+        cout << "There is no path exist." << endl;
+        return 0;
+    }
+                      
     int row = 3;
     int col = 3;
     
