@@ -7,11 +7,15 @@ class object{
     int z;
 
     public:
-        object(int a, int b, int c){
-            x = a;
-            y = new int(b);
-            z = c;
-        }
+        // Constructor : Old style
+        // object(int a, int b, int c = 0){
+        //     x = a;
+        //     y = new int(b);
+        //     z = c;
+        // }
+
+        // Initialisation list...
+        object(int a, int b, int c = 0) : x(a), y(new int(b)), z(c) {}
 
         int getX() const
         {
