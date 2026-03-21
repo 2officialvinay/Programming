@@ -3,6 +3,7 @@ using namespace std;
 
 int main(){
     const int *a = new int(2); // Here, Data is constant but pointer is non-constant.
+    // int const *a = new int(2);
     cout << *a << endl;
 
     // *a = 10; It will not change because data is constant.
