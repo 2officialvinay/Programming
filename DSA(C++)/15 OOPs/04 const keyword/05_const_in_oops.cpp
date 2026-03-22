@@ -14,7 +14,7 @@ class object{
         //     z = c;
         // }
 
-        // Initialisation list...
+        // Initialisation list : Modern way of writing constructor...
         object(int a, int b, int c = 0) : x(a), y(new int(b)), z(c) {}
 
         int getX() const
