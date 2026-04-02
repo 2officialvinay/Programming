@@ -20,6 +20,10 @@ class Node{
         this->prev = NULL;
         this->next = NULL;
     }
+
+    ~Node(){
+        cout << "Node with value " << this->data << " is deleted." << endl;
+    }
 };
 
 void print(Node* &head){
@@ -107,6 +111,54 @@ void insertAtPosition(Node* &head, Node* &tail, int data, int position){
     
 }
 
+void deleteNode(Node* &head, Node* &tail, int position){
+    if(head == NULL){
+        cout << "There is no node to delete." << endl;
+        return;
+    }
+    if(position > getLength(head)){
+        cout << "This position does't exist.";
+        return;
+    }
+
+    // Deleting first node...
+    if(position == 1){
+        Node* temp = head;
+        head = head->next;
+        head->prev = NULL;
+        temp->next = NULL;
+        delete(temp);
+        return;
+    }
+
+    // Deleting last node...
+    int len = getLength(head);
+    if(position == len){
+        Node* temp = tail;
+        tail = tail->prev;
+        tail->next = NULL;
+        temp->prev = NULL;
+        delete(temp);
+        return;
+    }
+
+    // Finding position to delete any node...
+    int i = 1;
+    Node* prevNode = head;
+    while(i < position-1){
+        prevNode = prevNode->next;
+        i++;
+    }
+    Node* curr = prevNode->next;
+
+    // For deletion...
+    prevNode->next = curr->next;
+    curr->next->prev = prevNode;
+    curr->next = NULL;
+    curr->prev = NULL;
+    delete(curr);
+}
+
 int main(){
     Node* head = NULL;
     Node* tail = NULL;
@@ -119,6 +171,11 @@ int main(){
     insertAtTail(head,tail,60);
     insertAtPosition(head,tail,70,6);
 
+    print(head);
+    cout << endl;
+
+    deleteNode(head,tail,7);
+    cout << endl;
     print(head);
 
     return 0;
