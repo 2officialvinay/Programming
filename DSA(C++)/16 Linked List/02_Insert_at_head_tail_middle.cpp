@@ -53,7 +53,7 @@ int findLength(Node* &head){
     while(temp!=NULL){
         temp = temp->next;
         len++;
-    }
+    } 
     return len;
 }
 
@@ -65,19 +65,19 @@ void insertAtPosition(Node* &head, Node* &tail,int position, int data){
         return;
     }
 
-    if(position == 0){
+    if(position == 1){
         insertAtHead(head,tail,data);
         return;
     }
     int len = findLength(head);
-    if(position >= len){
+    if(position > len){
         insertAtTail(head,tail,data);
         return;
     }
     // Finding the position: previous & current...
     int i = 1;
     Node* prev = head;
-    while(i < position){
+    while(i < position-1){
         prev = prev->next;
         i++;
     }
@@ -125,7 +125,7 @@ void deleteNode(Node* &head, Node* &tail, int position){
     // Finding prev and curr...
     int i = 1;
     Node* prev = head;
-    while(i < position){
+    while(i < position-1){
         prev = prev->next;
         i++;
     }
@@ -152,8 +152,8 @@ int main(){
     insertAtHead(head,tail,40);
     insertAtTail(head,tail,50);
     insertAtTail(head,tail,60);
-    insertAtPosition(head,tail,0,70);
-    insertAtPosition(head,tail,7,80);
+    insertAtPosition(head,tail,2,70);
+    insertAtPosition(head,tail,3,80);
 
     print(head);
     cout << endl;
