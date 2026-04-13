@@ -13,20 +13,21 @@ class Node{
 };
 
 // Floyd's Cycle Detection...
-bool isLoopPresent(Node* &head){
-    if(head == NULL){
-        return false;
-    }
+Node* LoopStartingPoint(Node* &head){
     Node* slow = head;
     Node* fast = head;
     while(fast != NULL && fast->next != NULL){
         slow = slow->next;
         fast = fast->next->next;
         if(fast == slow){
-            return true;
+            slow = head;
+            while(slow != fast){
+                loopStartPoint++;
+                slow = slow->next;
+            }
         }
     }
-    return false;
+    return -1;
 }
 
 int main(){
@@ -50,14 +51,8 @@ int main(){
     seventh->next = eighth;
     eighth->next = nineth;
     nineth->next = tenth;
-    tenth->next = seventh;
-
-    if(isLoopPresent(first)){
-        cout << "Loop is present." << endl;
-    }
-    else{
-        cout << "Loop is not present." << endl;
-    }
+    tenth->next = third;
+    cout << "The starting point of loop is " << LoopStartingPoint(first) << endl;
 
     return 0;
 }
