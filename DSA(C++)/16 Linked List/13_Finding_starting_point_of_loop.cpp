@@ -14,20 +14,25 @@ class Node{
 
 // Floyd's Cycle Detection...
 Node* LoopStartingPoint(Node* &head){
+    if(head == NULL){
+        return NULL;
+    }
+
     Node* slow = head;
     Node* fast = head;
     while(fast != NULL && fast->next != NULL){
         slow = slow->next;
         fast = fast->next->next;
         if(fast == slow){
-            slow = head;
-            while(slow != fast){
-                loopStartPoint++;
-                slow = slow->next;
-            }
+            break;
         }
     }
-    return -1;
+    slow = head;
+    while(slow != fast){
+        slow = slow->next;
+        fast = fast->next;
+    }
+    return slow;
 }
 
 int main(){
@@ -51,8 +56,9 @@ int main(){
     seventh->next = eighth;
     eighth->next = nineth;
     nineth->next = tenth;
-    tenth->next = third;
-    cout << "The starting point of loop is " << LoopStartingPoint(first) << endl;
+    tenth->next = fifth;
+
+    cout << "The starting point of loop is " << LoopStartingPoint(first)->data << endl;
 
     return 0;
 }
