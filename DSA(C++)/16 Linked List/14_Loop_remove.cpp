@@ -12,7 +12,7 @@ class Node{
     }
 };
 
-// Floyd's Cycle Detection...
+// Loop remove by Floyd's Cycle Detection...
 void LoopRemove(Node* &head){
     if(head == NULL){
         return;
