@@ -12,13 +12,20 @@ class Node{
     }
 };
 
-removeDuplicates(Node* &head){
+void removeDuplicates(Node* &head){
+    if(head == NULL){
+        return;
+    }
+    
     Node* prev = head;
     Node* curr = head->next;
     while(curr != NULL){
         if(prev->data == curr->data){
+            Node* temp = curr;
             prev->next = curr->next;
+            temp->next = NULL;
             curr = prev->next;
+            delete temp;
         }
         else{
             prev = curr;
