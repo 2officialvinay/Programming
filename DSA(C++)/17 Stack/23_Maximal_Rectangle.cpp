@@ -66,7 +66,12 @@ int maximalRectangle(vector<vector<char>> &matrix){
 
     for(int i = 1; i < row; i++){
         for(int j = 0; j < col; j++){
-            v[i][j] += v[i-1][j];
+            if(v[i][j]){
+                v[i][j] += v[i-1][j];
+            }
+            else{
+                v[i][j] = 0;
+            }
         }
         area = max(area, largestRectangleArea(v[i]));
     }
